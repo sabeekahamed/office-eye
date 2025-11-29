@@ -1,7 +1,22 @@
 
 import React from "react";
 
-export default function OfficeEyeLanding() {\n  // handle Netlify form submit with fetch fallback\n  async function handleSubmit(e){\n    e.preventDefault();\n    const form = e.target;\n    const data = new FormData(form);\n    try{\n      await fetch('/', { method: 'POST', body: data });\n      alert('Thank you! We received your message.');\n      form.reset();\n    }catch(err){\n      console.error('Form submit error', err);\n      alert('Failed to send form. Please email sabeekahamedsagabdheen@gmail.com');\n    }\n  }\n
+export default function OfficeEyeLanding() {
+  // handle Netlify form submit with fetch fallback
+  async function handleSubmit(e){
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    try{
+      await fetch('/', { method: 'POST', body: data });
+      alert('Thank you! We received your message.');
+      form.reset();
+    }catch(err){
+      console.error('Form submit error', err);
+      alert('Failed to send form. Please email sabeekahamedsagabdheen@gmail.com');
+    }
+  }
+
   return (
     <div className="min-h-screen bg-neutral-50 text-slate-900 antialiased">
       <header className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
@@ -127,7 +142,7 @@ export default function OfficeEyeLanding() {\n  // handle Netlify form submit wi
           <p className="text-slate-600 mt-2">Ready to try? Fill the form and we’ll set up a 14-day trial for your team.</p>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <form action="REPLACE_WITH_FORM_ACTION" method="POST" className="space-y-4 bg-white p-6 rounded-lg shadow">
+            <form onSubmit={handleSubmit} method="POST" data-netlify="true" className="space-y-4 bg-white p-6 rounded-lg shadow">
               <div><label className="block text-sm font-medium text-slate-700">Full name</label><input name="name" required className="mt-1 block w-full rounded-md border px-3 py-2" /></div>
               <div><label className="block text-sm font-medium text-slate-700">Email</label><input name="email" type="email" required className="mt-1 block w-full rounded-md border px-3 py-2" /></div>
               <div><label className="block text-sm font-medium text-slate-700">Company</label><input name="company" className="mt-1 block w-full rounded-md border px-3 py-2" /></div>
