@@ -29,3 +29,8 @@ npm run build
 
 - Tailwind is already configured (`tailwind.config.cjs`, `postcss.config.cjs`).
 - Replace the contact form action in `src/App.jsx`.
+
+
+## Netlify Forms
+
+Contact form is configured for Netlify Forms. To enable email notifications, configure Netlify or use Zapier to forward submissions to your email.

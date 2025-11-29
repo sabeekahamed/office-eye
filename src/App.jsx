@@ -1,7 +1,7 @@
 
 import React from "react";
 
-export default function OfficeEyeLanding() {
+export default function OfficeEyeLanding() {\n  // handle Netlify form submit with fetch fallback\n  async function handleSubmit(e){\n    e.preventDefault();\n    const form = e.target;\n    const data = new FormData(form);\n    try{\n      await fetch('/', { method: 'POST', body: data });\n      alert('Thank you! We received your message.');\n      form.reset();\n    }catch(err){\n      console.error('Form submit error', err);\n      alert('Failed to send form. Please email sabeekahamedsagabdheen@gmail.com');\n    }\n  }\n
   return (
     <div className="min-h-screen bg-neutral-50 text-slate-900 antialiased">
       <header className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
@@ -135,7 +135,7 @@ export default function OfficeEyeLanding() {
               <div className="text-right"><button type="submit" className="px-5 py-2 rounded-md bg-indigo-600 text-white">Request Trial</button></div>
             </form>
 
-            <div className="p-6 bg-neutral-100 rounded-lg"><h4 className="font-semibold">Contact Info</h4><p className="mt-2 text-sm text-slate-600">Email: hello@officeeye.example (replace)</p><p className="mt-1 text-sm text-slate-600">Phone: +91 90000 00000 (replace)</p><div className="mt-6"><h5 className="font-medium">Why OfficeEye?</h5><p className="mt-2 text-sm text-slate-600">Affordable, privacy-first, and built for small businesses. Deploy in minutes, understand productivity in hours.</p></div></div>
+            <div className="p-6 bg-neutral-100 rounded-lg"><h4 className="font-semibold">Contact Info</h4><p className="mt-2 text-sm text-slate-600">Email: sabeekahamedsagabdheen@gmail.com</p><p className="mt-1 text-sm text-slate-600">Phone: +91 9677892732</p><div className="mt-6"><h5 className="font-medium">Why OfficeEye?</h5><p className="mt-2 text-sm text-slate-600">Affordable, privacy-first, and built for small businesses. Deploy in minutes, understand productivity in hours.</p></div></div>
           </div>
         </section>
 
