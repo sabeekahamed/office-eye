@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://office-eye.netlify.app/sitemap.xml

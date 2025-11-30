@@ -2,18 +2,24 @@
 import React from "react";
 
 export default function OfficeEyeLanding() {
-  // handle Netlify form submit with fetch fallback
   async function handleSubmit(e){
     e.preventDefault();
     const form = e.target;
-    const data = new FormData(form);
-    try{
-      await fetch('/', { method: 'POST', body: data });
-      alert('Thank you! We received your message.');
+    const formData = new FormData(form);
+    
+    // Check if running on Netlify
+    if (window.location.hostname.includes('netlify.app')) {
+      try {
+        await fetch('/', { method: 'POST', body: formData });
+        window.location.href = '/success.html';
+      } catch (err) {
+        alert('Failed to send form. Please email unijas321@gmail.com');
+      }
+    } else {
+      // For localhost
+      const data = Object.fromEntries(formData);
+      alert(`Thank you ${data.name}! Your trial request has been received. We'll contact you at ${data.email} within 24 hours.`);
       form.reset();
-    }catch(err){
-      console.error('Form submit error', err);
-      alert('Failed to send form. Please email sabeekahamedsagabdheen@gmail.com');
     }
   }
 
@@ -28,7 +34,7 @@ export default function OfficeEyeLanding() {
           </div>
           <div>
             <h1 className="text-lg font-semibold">OfficeEye</h1>
-            <p className="text-xs text-slate-500">Simple, lightweight employee monitoring for small teams</p>
+            <p className="text-xs text-slate-500">Smart Employee Monitoring & Productivity Analytics</p>
           </div>
         </div>
         <nav className="hidden md:flex gap-6 items-center text-sm text-slate-700">
@@ -36,26 +42,26 @@ export default function OfficeEyeLanding() {
           <a href="#how" className="hover:text-slate-900">How it works</a>
           <a href="#pricing" className="hover:text-slate-900">Pricing</a>
           <a href="#contact" className="hover:text-slate-900">Contact</a>
-          <a href="#" className="ml-4 inline-flex items-center px-4 py-2 border rounded-md bg-indigo-600 text-white">Get Started</a>
+          <a href="#contact" className="ml-4 inline-flex items-center px-4 py-2 border rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">Start Free Trial</a>
         </nav>
       </header>
 
       <main className="max-w-6xl mx-auto px-6">
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-12">
           <div>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Know who is working. <span className="text-indigo-600">Real insights</span>, not guesswork.</h2>
-            <p className="mt-6 text-lg text-slate-600">OfficeEye is a lightweight agent + web dashboard that shows active hours, apps used, and productivity trends — built for small businesses and managers who need answers, not overhead.</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Transform Your Team's <span className="text-indigo-600">Productivity</span> with Smart Monitoring</h2>
+            <p className="mt-6 text-lg text-slate-600">OfficeEye delivers real-time employee productivity insights through lightweight monitoring. Track active hours, application usage, and performance trends — designed for modern small businesses who value transparency and results.</p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-indigo-600 text-white font-medium">Start 14-day Trial</a>
-              <a href="#features" className="inline-flex items-center justify-center px-6 py-3 rounded-md border text-slate-700">See Features</a>
+              <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors">Start 14-Day Free Trial</a>
+              <a href="#features" className="inline-flex items-center justify-center px-6 py-3 rounded-md border text-slate-700 hover:bg-slate-50 transition-colors">See Features</a>
             </div>
 
             <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-600">
-              <li>• Lightweight Windows agent (&lt;30MB)</li>
-              <li>• Mobile and web manager apps</li>
-              <li>• Affordable monthly pricing</li>
-              <li>• Privacy-first defaults</li>
+              <li>✓ Lightweight Windows agent (&lt;30MB)</li>
+              <li>✓ Real-time productivity analytics</li>
+              <li>✓ Privacy-first approach</li>
+              <li>✓ Affordable pricing from ₹99/month</li>
             </ul>
           </div>
 
@@ -94,8 +100,8 @@ export default function OfficeEyeLanding() {
         </section>
 
         <section id="features" className="py-12">
-          <h3 className="text-2xl font-bold">Key Features</h3>
-          <p className="text-slate-600 mt-2">Everything a manager needs — simple, secure, and affordable.</p>
+          <h3 className="text-2xl font-bold">Powerful Features for Modern Teams</h3>
+          <p className="text-slate-600 mt-2">Comprehensive employee monitoring and productivity analytics — simple, secure, and affordable.</p>
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="p-5 bg-white rounded-xl shadow-sm border"><h4 className="font-semibold">Active time & Attendance</h4><p className="mt-2 text-sm text-slate-600">Track active/idle hours, auto-attendance export, daily summaries.</p></div>
@@ -121,9 +127,9 @@ export default function OfficeEyeLanding() {
           <p className="text-slate-600 mt-2">Simple per-seat pricing. Month-to-month, cancel anytime.</p>
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="p-6 rounded-xl border bg-white"><div className="flex items-baseline gap-3"><div className="text-lg font-semibold">Starter</div></div><div className="mt-4 text-3xl font-extrabold">{"₹99"}<span className="text-sm font-medium text-slate-600">/user/month</span></div><ul className="mt-4 text-sm text-slate-600 space-y-2"><li>• Up to 10 users</li><li>• Active time</li><li>• App usage</li></ul><div className="mt-6"><a className="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md">Start Trial</a></div></div>
-            <div className="p-6 rounded-xl border bg-white ring-2 ring-indigo-200"><div className="flex items-baseline gap-3"><div className="text-lg font-semibold">Growth</div><div className="ml-auto text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Popular</div></div><div className="mt-4 text-3xl font-extrabold">{"₹149"}<span className="text-sm font-medium text-slate-600">/user/month</span></div><ul className="mt-4 text-sm text-slate-600 space-y-2"><li>• Up to 100 users</li><li>• Mobile app</li><li>• Export reports</li></ul><div className="mt-6"><a className="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md">Start Trial</a></div></div>
-            <div className="p-6 rounded-xl border bg-white"><div className="flex items-baseline gap-3"><div className="text-lg font-semibold">Pro</div></div><div className="mt-4 text-3xl font-extrabold">{"₹199"}<span className="text-sm font-medium text-slate-600">/user/month</span></div><ul className="mt-4 text-sm text-slate-600 space-y-2"><li>• Unlimited users</li><li>• Priority support</li><li>• Custom integrations</li></ul><div className="mt-6"><a className="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md">Start Trial</a></div></div>
+            <div className="p-6 rounded-xl border bg-white"><div className="flex items-baseline gap-3"><div className="text-lg font-semibold">Starter</div></div><div className="mt-4 text-3xl font-extrabold">{"₹99"}<span className="text-sm font-medium text-slate-600">/user/month</span></div><ul className="mt-4 text-sm text-slate-600 space-y-2"><li>• Up to 10 users</li><li>• Active time</li><li>• App usage</li></ul><div className="mt-6"><a href="#contact" className="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">Start Free Trial</a></div></div>
+            <div className="p-6 rounded-xl border bg-white ring-2 ring-indigo-200"><div className="flex items-baseline gap-3"><div className="text-lg font-semibold">Growth</div><div className="ml-auto text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Popular</div></div><div className="mt-4 text-3xl font-extrabold">{"₹149"}<span className="text-sm font-medium text-slate-600">/user/month</span></div><ul className="mt-4 text-sm text-slate-600 space-y-2"><li>• Up to 100 users</li><li>• Mobile app</li><li>• Export reports</li></ul><div className="mt-6"><a href="#contact" className="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">Start Free Trial</a></div></div>
+            <div className="p-6 rounded-xl border bg-white"><div className="flex items-baseline gap-3"><div className="text-lg font-semibold">Pro</div></div><div className="mt-4 text-3xl font-extrabold">{"₹199"}<span className="text-sm font-medium text-slate-600">/user/month</span></div><ul className="mt-4 text-sm text-slate-600 space-y-2"><li>• Unlimited users</li><li>• Priority support</li><li>• Custom integrations</li></ul><div className="mt-6"><a href="#contact" className="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">Start Free Trial</a></div></div>
           </div>
         </section>
 
@@ -142,15 +148,20 @@ export default function OfficeEyeLanding() {
           <p className="text-slate-600 mt-2">Ready to try? Fill the form and we’ll set up a 14-day trial for your team.</p>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <form onSubmit={handleSubmit} method="POST" data-netlify="true" className="space-y-4 bg-white p-6 rounded-lg shadow">
-              <div><label className="block text-sm font-medium text-slate-700">Full name</label><input name="name" required className="mt-1 block w-full rounded-md border px-3 py-2" /></div>
-              <div><label className="block text-sm font-medium text-slate-700">Email</label><input name="email" type="email" required className="mt-1 block w-full rounded-md border px-3 py-2" /></div>
-              <div><label className="block text-sm font-medium text-slate-700">Company</label><input name="company" className="mt-1 block w-full rounded-md border px-3 py-2" /></div>
-              <div><label className="block text-sm font-medium text-slate-700">Message</label><textarea name="message" rows={4} className="mt-1 block w-full rounded-md border px-3 py-2" /></div>
-              <div className="text-right"><button type="submit" className="px-5 py-2 rounded-md bg-indigo-600 text-white">Request Trial</button></div>
+            <form onSubmit={handleSubmit} method="POST" data-netlify="true" name="trial-request" className="space-y-4 bg-white p-6 rounded-lg shadow">
+              <input type="hidden" name="form-name" value="trial-request" />
+              <input type="hidden" name="subject" value="OfficeEye Trial Request" />
+              <input type="hidden" name="to" value="unijas321@gmail.com" />
+              <div><label className="block text-sm font-medium text-slate-700">Full Name *</label><input name="name" required className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" /></div>
+              <div><label className="block text-sm font-medium text-slate-700">Email Address *</label><input name="email" type="email" required className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" /></div>
+              <div><label className="block text-sm font-medium text-slate-700">Company Name</label><input name="company" className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" /></div>
+              <div><label className="block text-sm font-medium text-slate-700">Number of Employees</label><select name="team-size" className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"><option value="">Select team size</option><option value="1-10">1-10 employees</option><option value="11-50">11-50 employees</option><option value="51-100">51-100 employees</option><option value="100+">100+ employees</option></select></div>
+              <div><label className="block text-sm font-medium text-slate-700">Message / Requirements</label><textarea name="message" rows={4} placeholder="Tell us about your monitoring needs..." className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" /></div>
+              <div data-netlify-recaptcha="true"></div>
+              <div className="text-right"><button type="submit" className="px-6 py-3 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors">Request 14-Day Free Trial</button></div>
             </form>
 
-            <div className="p-6 bg-neutral-100 rounded-lg"><h4 className="font-semibold">Contact Info</h4><p className="mt-2 text-sm text-slate-600">Email: sabeekahamedsagabdheen@gmail.com</p><p className="mt-1 text-sm text-slate-600">Phone: +91 9677892732</p><div className="mt-6"><h5 className="font-medium">Why OfficeEye?</h5><p className="mt-2 text-sm text-slate-600">Affordable, privacy-first, and built for small businesses. Deploy in minutes, understand productivity in hours.</p></div></div>
+            <div className="p-6 bg-neutral-100 rounded-lg"><h4 className="font-semibold">Contact Info</h4><p className="mt-2 text-sm text-slate-600">Email: unijas321@gmail.com</p><p className="mt-1 text-sm text-slate-600">Support: unijas321@gmail.com</p><p className="mt-1 text-sm text-slate-600">Phone: +91 7904385250</p><div className="mt-6"><h5 className="font-medium">Why Choose OfficeEye?</h5><ul className="mt-2 text-sm text-slate-600 space-y-1"><li>✓ 14-day free trial with full features</li><li>✓ Privacy-first employee monitoring</li><li>✓ Built specifically for small businesses</li><li>✓ Deploy in minutes, insights in hours</li></ul></div></div>
           </div>
         </section>
 

@@ -6,3 +6,33 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[form]
+  name = "trial-request"
+  
+[[form.fields]]
+  name = "name"
+  type = "text"
+  required = true
+  
+[[form.fields]]
+  name = "email"
+  type = "email"
+  required = true
+  
+[[form.fields]]
+  name = "company"
+  type = "text"
+  
+[[form.fields]]
+  name = "team-size"
+  type = "select"
+  
+[[form.fields]]
+  name = "message"
+  type = "textarea"
+
+# Email notifications for form submissions
+[form.notifications]
+  email = "unijas321@gmail.com"
+  subject = "New OfficeEye Trial Request"
