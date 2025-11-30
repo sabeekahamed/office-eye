@@ -87,6 +87,18 @@ window.addEventListener('unhandledrejection', function(event){
 
   <body>
     <div id="root"></div>
+    
+    <!-- Hidden form for Netlify detection -->
+    <form name="trial-request" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <select name="team-size">
+        <option value="1-10">1-10</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+    
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

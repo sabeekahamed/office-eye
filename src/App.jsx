@@ -2,25 +2,9 @@
 import React from "react";
 
 export default function OfficeEyeLanding() {
-  async function handleSubmit(e){
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    // Check if running on Netlify
-    if (window.location.hostname.includes('netlify.app')) {
-      try {
-        await fetch('/', { method: 'POST', body: formData });
-        window.location.href = '/success.html';
-      } catch (err) {
-        alert('Failed to send form. Please email unijas321@gmail.com');
-      }
-    } else {
-      // For localhost
-      const data = Object.fromEntries(formData);
-      alert(`Thank you ${data.name}! Your trial request has been received. We'll contact you at ${data.email} within 24 hours.`);
-      form.reset();
-    }
+  function handleSubmit(e){
+    // Let Netlify handle the form submission naturally
+    // No preventDefault() needed for Netlify forms
   }
 
   return (
@@ -148,10 +132,8 @@ export default function OfficeEyeLanding() {
           <p className="text-slate-600 mt-2">Ready to try? Fill the form and we’ll set up a 14-day trial for your team.</p>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <form onSubmit={handleSubmit} method="POST" data-netlify="true" name="trial-request" className="space-y-4 bg-white p-6 rounded-lg shadow">
+            <form method="POST" name="trial-request" data-netlify="true" action="/success.html" className="space-y-4 bg-white p-6 rounded-lg shadow">
               <input type="hidden" name="form-name" value="trial-request" />
-              <input type="hidden" name="subject" value="OfficeEye Trial Request" />
-              <input type="hidden" name="to" value="unijas321@gmail.com" />
               <div><label className="block text-sm font-medium text-slate-700">Full Name *</label><input name="name" required className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" /></div>
               <div><label className="block text-sm font-medium text-slate-700">Email Address *</label><input name="email" type="email" required className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" /></div>
               <div><label className="block text-sm font-medium text-slate-700">Company Name</label><input name="company" className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" /></div>
